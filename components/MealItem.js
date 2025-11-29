@@ -1,9 +1,16 @@
 import { View, Text, Pressable, StyleSheet, Image, Platform } from 'react-native';
 import { globalStyles } from '../styles/global';
+import { useNavigation } from '@react-navigation/native';
+import MealImage from './MealImage';
+import MealItemDetail from './MealItemDetail';
 
 function MealItem({ item }) {
+    const navigation = useNavigation();
+
     function selectMealItemHandler() {
-        // Navigation logic will go here
+        navigation.navigate('MealDetail', {
+            mealId: item.id,
+        });
     }
     return (
         <View style={[styles.mealItem, globalStyles.shadow]} pressed>
@@ -11,15 +18,8 @@ function MealItem({ item }) {
                 pressed && styles.pressed
             ]}>
                 <View style={styles.innerContainer}>
-                    <View>
-                        <Image source={{ uri: item.imageUrl }} style={styles.image} />
-                        <Text style={styles.title}>{item.title}</Text>
-                    </View>
-                    <View style={styles.details}>
-                        <Text style={styles.detailItem}>{item.duration}m</Text>
-                        <Text style={styles.detailItem}>{item.complexity.toUpperCase()}</Text>
-                        <Text style={styles.detailItem}>{item.affordability.toUpperCase()}</Text>
-                    </View>
+                    <MealImage imageUrl={item.imageUrl} title={item.title} />
+                    <MealItemDetail item={item} />
                 </View>
             </Pressable>
         </View>
@@ -41,26 +41,7 @@ const styles = StyleSheet.create({
     pressed: {
         opacity: 0.5,
     },
-    image: {
-        width: '100%',
-        height: 200,
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        margin: 8,
-        textAlign: 'center',
-        padding: 4,
-    },
-    details: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 12,
-    },
-    detailItem: {
-        fontSize: 14,
-        marginHorizontal: 8,
-    },
+   
 });
 
 export default MealItem;
