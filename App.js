@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor:"#494848ff"}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#494848ff" }}>
       <StatusBar style="light" backgroundColor="#494848ff" />
 
       <NavigationContainer>
@@ -37,8 +37,11 @@ export default function App() {
           <Stack.Screen
             name="MealDetail"
             component={MealDetailScreen}
-            options={{ headerBackVisible: true }}
-          />  
+            options={{
+              headerBackVisible: true,
+            }
+            }
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

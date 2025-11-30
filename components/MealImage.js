@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 function MealImage({ imageUrl, title }) {
     return (
-        <View>
+        <View style={styles.container}>
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
         </View>
@@ -10,9 +10,17 @@ function MealImage({ imageUrl, title }) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        borderRadius: 16,      
+        overflow: 'hidden',   
+        marginBottom: 12,
+    },
     image: {
         width: '100%',
         height: 200,
+        borderRadius: 16,      
+        overflow: 'hidden',   
+        marginBottom: 12,
     },
     title: {
         fontWeight: 'bold',
